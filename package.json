@@ -1,0 +1,21 @@
+{
+  "name": "api-nodejs-basic",
+  "version": "1.0.0",
+  "description": "CRUD flow with API. Using basic concepts of the language.",
+  "main": "app.js",
+  "scripts": {
+  },  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasvec/api-nodejs-basic.git"
+  },
+  "author": "Lucas Vechiez Oliveira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucasvec/api-nodejs-basic/issues"
+  },
+  "homepage": "https://github.com/lucasvec/api-nodejs-basic#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
