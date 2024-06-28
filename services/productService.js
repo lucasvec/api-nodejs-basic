@@ -26,10 +26,8 @@ function deleteProduct(id) {
     const index = products.findIndex((product) => product.id === id);
     
     if (index !== -1) {
-        products.splice(index, 1);
-        return true;
-    } else {
-        return false;
+        const product = products.splice(index, 1);
+        return product;
     }
 }
 

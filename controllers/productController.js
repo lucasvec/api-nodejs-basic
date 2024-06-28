@@ -46,9 +46,9 @@ class ProductController {
     deleteProduct(request, response) {
         const { id } = request.params;
         const result = this.serviceProduct.deleteProduct(id);
-
-        if (result) {
-            return response.json({ message: 'Product deleted successfully' });
+        console.log(result)
+        if (result != null ) {
+            return response.json(result[0]);
         } else {
             return response.json({ error: 'Product not found' });
         }
