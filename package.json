@@ -4,7 +4,8 @@
   "description": "CRUD flow with API. Using basic concepts of the language.",
   "main": "app.js",
   "scripts": {
-  },  
+    "start": "nodemon app.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lucasvec/api-nodejs-basic.git"
@@ -17,5 +18,9 @@
   "homepage": "https://github.com/lucasvec/api-nodejs-basic#readme",
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "install": "^0.13.0",
+    "nodemon": "^3.1.4"
   }
 }
