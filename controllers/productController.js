@@ -11,33 +11,34 @@ class ProductController {
     }
 
     findById(request, response){
-        const {id} = request.params
-        return response.json(this.serviceProduct.findById(id))
+        const {id} = request.params;
+        return response.json(this.serviceProduct.findById(id));
     }
 
     insertProduct(request, response) {
         const { name, price, category } = request.body;
 
         const products = this.serviceProduct.listProducts()
-        const existsProduct = products.find(product => product.name.toLowerCase().trim()  === name.toLowerCase().trim())
+        const existsProduct = products.find(product => product.name.toLowerCase().trim()  === name.toLowerCase().trim());
 
         if (existsProduct){
-            return response.json({message: "Error. Product already exists."})
-        }
-
-        const product = {
-            id: randomUUID(),
-            name: name,
-            price: price,
-            category: category
-        };
-
-        const result = this.serviceProduct.insertProduct(product);
-
-        if (result){
-            return response.json(product);
+            return response.json({message: "Error. Product already exists."});
         }else{
-            return response.json({message: "Error. Product not inserted."})
+
+            const product = {
+                id: randomUUID(),
+                name: name,
+                price: price,
+                category: category
+            };
+
+            const result = this.serviceProduct.insertProduct(product);
+
+            if (result){
+                return response.json(product);
+            }else{
+                return response.json({message: "Error. Product not inserted."});
+            }
         }
 
         
@@ -46,7 +47,6 @@ class ProductController {
     deleteProduct(request, response) {
         const { id } = request.params;
         const result = this.serviceProduct.deleteProduct(id);
-        console.log(result)
         if (result != null ) {
             return response.json(result[0]);
         } else {

@@ -19,7 +19,7 @@ function listProducts() {
 }
 
 function findById(id){
-    return products.find((product) => product.id === id)
+    return products.find((product) => product.id === id);
 }
 
 function deleteProduct(id) {
