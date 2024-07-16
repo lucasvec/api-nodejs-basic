@@ -31,9 +31,19 @@ function deleteProduct(id) {
     }
 }
 
+function updateProduct(updatedProduct){
+    const index = products.findIndex((product) => product.id === updatedProduct.id);
+    if (index !== -1){
+        products[index] = updatedProduct;
+        return products[index];
+    }
+
+}
+
 module.exports = {
     insertProduct,
     deleteProduct,
     listProducts,
-    findById
+    findById,
+    updateProduct
 };
