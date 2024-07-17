@@ -13,7 +13,7 @@ class ProductController {
 
     findById(request, response){
         const {id} = request.params;
-        const product = this.serviceProduct.findById(id)
+        const product = this.serviceProduct.findById(id);
         if (product == null){
             return response.json({error: 'Product not found'});
         }else{
@@ -49,11 +49,11 @@ class ProductController {
     insertProduct(request, response) {
         const { name, price, category } = request.body;
 
-        const products = this.serviceProduct.listProducts()
+        const products = this.serviceProduct.listProducts();
         const existsProduct = products.find(product => product.name.toLowerCase().trim() === name.toLowerCase().trim());
 
         if (existsProduct){
-            return response.json({  error: "Product already exists."});
+            return response.json({error: "Product already exists."});
         }else{
 
             const product = {
@@ -68,7 +68,7 @@ class ProductController {
             if (result){
                 return response.json(product);
             }else{
-                return response.json({ error: "Product not inserted."});
+                return response.json({error: "Product not inserted."});
             }
         }
 
@@ -79,13 +79,11 @@ class ProductController {
         const { id } = request.params;
         const result = this.serviceProduct.deleteProduct(id);
         if (result != null ) {
-            return response.json(result[0]);
+            return response.json(result);
         } else {
             return response.json({ error: 'Product not found'});
         }
     }
-
-  
     
 
 }
