@@ -8,11 +8,11 @@ const productController = new ProductController(serviceProduct);
 
 app.use(express.json());
 
-router.get("/list-products", (request, response) => productController.listProducts(request, response));
-router.get("/product/:id", (request, response) => productController.findById(request, response));
-router.post("/add-product", (request, response) => productController.insertProduct(request, response));
-router.delete("/delete-product/:id", (request, response) => productController.deleteProduct(request, response));
-router.patch("/modify-product/:id", (request, response) => productController.updateProduct(request, response));
+router.get("/", (request, response) => productController.listProducts(request, response));
+router.get("/:id", (request, response) => productController.findById(request, response));
+router.post("/", (request, response) => productController.insertProduct(request, response));
+router.delete("/:id", (request, response) => productController.deleteProduct(request, response));
+router.patch("/:id", (request, response) => productController.updateProduct(request, response));
 
 app.use("/api-products", router);
 

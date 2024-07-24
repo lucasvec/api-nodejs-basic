@@ -1,43 +1,66 @@
-const { randomUUID } = require("crypto");
-
-let products = [
-    {
-        id: randomUUID(),
-        name: "Picanha Swift Pro",
-        price: 54.4,
-        category: "Master"
-    }
-];
+const Product = require("../models/productModel");
 
 function insertProduct(product) {
-    products.push(product);
-    return product;
-}
-
-function listProducts() {
-    return products;
-}
-
-function findById(id){
-    return products.find((product) => product.id === id);
-}
-
-function deleteProduct(id) {
-    const index = products.findIndex((product) => product.id === id);
-    
-    if (index !== -1) {
-        const product = products.splice(index, 1);
-        return product;
+    try{
+        const result = Product.addProduct(product.id, product.name, product.price, product.category);
+        return result;
+    }catch (error){
+        throw new Error(`Error when inserting products. Details: ${error}`);
     }
 }
 
-function updateProduct(updatedProduct){
-    const index = products.findIndex((product) => product.id === updatedProduct.id);
-    if (index !== -1){
-        products[index] = updatedProduct;
-        return products[index];
+async function listProducts(){
+    try{
+        const result = await Product.getProducts();
+        return result;
+    }catch (error){
+        throw new Error(`Error listing products. Details: ${error}`);
     }
+}
 
+async function findById(id){
+    try{
+        const result = await Product.getProductById(id);
+        return result;
+    }catch (error){
+        throw new Error(`Error listing product. Details: ${error}`);
+    }
+}
+
+async function deleteProduct(product) {
+    try{
+        const result = await Product.removeProduct(product.id);
+        return result;
+    }catch(error){
+        throw new Error(`Error when deleting product. Details: ${error}`);
+    }
+}
+
+async function updateProductName(id, newName){
+    try{
+        const result = await Product.modifyProductName(id, newName);
+        return result;
+    }catch(error){
+        throw new Error(`Error updating product. Details: ${error}`)
+    }
+}
+
+async function updateProductPrice(id, newPrice){
+    try{
+        const result = await Product.modifyProductPrice(id, newPrice);
+        return result;
+    }catch(error){
+        throw new Error(`Error updating product. Details: ${error}`);
+    }
+}
+
+async function updateProductCategory(id, newCategory){
+    try{
+        const result = await Product.modifyProductCategory(id, newCategory);
+        return result;
+    }catch(error){
+        throw new Error(`Error updating product. Details: ${error}`);
+    }
 }
 
 module.exports = {
@@ -45,5 +68,7 @@ module.exports = {
     deleteProduct,
     listProducts,
     findById,
-    updateProduct
+    updateProductName,
+    updateProductPrice,
+    updateProductCategory
 };

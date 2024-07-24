@@ -1,4 +1,4 @@
-const { randomUUID } = require("crypto");
+const classProduct = require("../models/productModel");
 const serviceProduct = require("../services/productService");
 
 
@@ -7,61 +7,56 @@ class ProductController {
         this.serviceProduct = serviceProduct;
     }
 
-    listProducts(request, response) {
-        return response.json(this.serviceProduct.listProducts());
+    async listProducts(request, response) {
+        return response.json(await this.serviceProduct.listProducts());
     }
 
-    findById(request, response){
+    async findById(request, response){
         const {id} = request.params;
-        const product = this.serviceProduct.findById(id);
-        if (product == null){
+        const product = await this.serviceProduct.findById(id);
+        if (!product.length > 0){
             return response.json({error: 'Product not found'});
         }else{
             return response.json(product);
         }
     }
 
-    updateProduct(request, response){
+    async updateProduct(request, response){
         const {id} = request.params;
         const {name, price, category} = request.body;
-
-        const product = this.serviceProduct.findById(id);
         
-        if(product == null){
-            return response.json({ error: 'Product not found'});
-        }
-
         if(name != null){
-            product.name = name;
+            await this.serviceProduct.updateProductName(id, name);
         }
 
         if(price != null){
-            product.price = price;
+            await this.serviceProduct.updateProductPrice(id, price);
         }
             
         if(category != null){
-            product.category = category;
+            await this.serviceProduct.updateProductCategory(id, category);
         }
 
-        return response.json(this.serviceProduct.updateProduct(product));
+        const product = await this.serviceProduct.findById(id);
+
+        if(!product.length > 0){
+            return response.json({ error: 'Product not found'});
+        }
+
+        return response.json(product);
     }
 
-    insertProduct(request, response) {
+    async insertProduct(request, response) {
         const { name, price, category } = request.body;
 
-        const products = this.serviceProduct.listProducts();
+        const products = await this.serviceProduct.listProducts();
         const existsProduct = products.find(product => product.name.toLowerCase().trim() === name.toLowerCase().trim());
 
         if (existsProduct){
             return response.json({error: "Product already exists."});
         }else{
 
-            const product = {
-                id: randomUUID(),
-                name: name,
-                price: price,
-                category: category
-            };
+            const product = new classProduct(name, price, category)  ;     
 
             const result = this.serviceProduct.insertProduct(product);
 
@@ -75,17 +70,22 @@ class ProductController {
         
     }
 
-    deleteProduct(request, response) {
+    async deleteProduct(request, response) {
         const { id } = request.params;
-        const result = this.serviceProduct.deleteProduct(id);
-        if (result != null ) {
-            return response.json(result);
-        } else {
-            return response.json({ error: 'Product not found'});
+        
+        const find = await this.serviceProduct.findById(id);
+
+        if(find.length > 0){
+            const product = find[0];
+            await this.serviceProduct.deleteProduct(product);
+            return response.json(product);
+        }else{
+            return response.json({error: "Product not found"});
         }
+        }
+
+
     }
     
-
-}
 
 module.exports = ProductController;
