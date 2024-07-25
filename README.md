@@ -1,5 +1,9 @@
 Basic CRUD API in nodejs
 
+Prerequisites:
+-Install NodeJS: https://nodejs.org/en/download/
+-Install Git: https://git-scm.com/downloads
+
 Use on your machine:
 
 1. Acquire
