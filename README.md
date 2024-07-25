@@ -1,41 +1,45 @@
-Basic CRUD API in nodejs
+# Basic CRUD API in Node.js
 
-Prerequisites:
+## Prerequisites
 
--Install NodeJS: https://nodejs.org/en/download/
+Before you begin, ensure you have met the following requirements:
 
--Install Git: https://git-scm.com/downloads
+- **NodeJS**: Download and install from [here](https://nodejs.org/en/download/)
+- **Git**: Download and install from [here](https://git-scm.com/downloads)
+- **MySQL**: Download and install from [here](https://dev.mysql.com/downloads/installer/)
 
--Install MySQL2: https://dev.mysql.com/downloads/installer/
+## Installation and Setup
 
+Follow these steps to set up and run the API on your local machine:
 
-Use on your machine:
+### 1. Clone the Repository
 
-1.
-Install DBMS (Data Base Management System)
-->https://dev.mysql.com/downloads/installer/
+Acquire the project by cloning the repository:
 
+git clone https://github.com/lucasvec/api-nodejs-basic.git
+cd api-nodejs-basic
 
-2. Acquire
--->git clone https://github.com/lucasvec/api-nodejs-basic.git
+### 2. Install Dependencies
 
+Install the necessary dependencies by running:
 
-3. install dependencies
--->npm install
+**npm install**
 
+#### 3. Configure the Database
+Ensure your MySQL server is running. Then, configure the database credentials by editing the db.config.js file with your MySQL credentials.
 
-4.
-Configure database
-  1. change db.config.js class with your credentials
-  2. Run database script:
-   
-   -->CREATE TABLE product(
+### 4. Create the Database Table
+Run the following SQL script to create the product table in your database:
+
+**CREATE TABLE product (
     id VARCHAR(36) PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     price DECIMAL NOT NULL,
     category VARCHAR(30) NOT NULL
-    )
+);**
 
 
-5. Start api
--->npm start
+### 5. Start the API
+Finally, start the API by running:
+
+**npm start**
