@@ -43,6 +43,11 @@ class Product {
         return query;
     }
 
+    static async changeProduct(id, name, price, category){
+        const query = await db.query("UPDATE product SET product.name = ?, product.price = ?, product.category = ? WHERE product.id = ?", [name, price, category, id]);
+        return query;
+    }
+
 
 }
 

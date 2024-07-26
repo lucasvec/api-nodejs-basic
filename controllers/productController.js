@@ -84,6 +84,24 @@ class ProductController {
         }
         }
 
+    async replaceProduct(request, response){
+        const { id } = request.params;
+        const { name, price, category } = request.body;
+
+        if(name != null && price != null && category != null){
+            await this.serviceProduct.replaceProduct(id, name, price, category);
+            const product = await this.serviceProduct.findById(id);
+            if(product.length > 0){
+                return response.json(product);
+            }else{
+                return response.json({error: "Product not found."});
+            }
+        }else{
+            return response.json({error: "Incomplete data."});
+        }
+
+    }
+
 
     }
     

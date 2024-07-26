@@ -13,6 +13,7 @@ router.get("/:id", (request, response) => productController.findById(request, re
 router.post("/", (request, response) => productController.insertProduct(request, response));
 router.delete("/:id", (request, response) => productController.deleteProduct(request, response));
 router.patch("/:id", (request, response) => productController.updateProduct(request, response));
+router.put("/:id", (request, response) => productController.replaceProduct(request, response));
 
 app.use("/api-products", router);
 

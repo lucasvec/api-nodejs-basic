@@ -63,6 +63,15 @@ async function updateProductCategory(id, newCategory){
     }
 }
 
+async function replaceProduct(id, name, price, category){
+    try{
+        const result = await Product.changeProduct(id, name, price, category);
+        return result;
+    }catch(error){
+        throw new Error(`Error replace product. Details: ${error}`);
+    }
+}
+
 module.exports = {
     insertProduct,
     deleteProduct,
@@ -70,5 +79,6 @@ module.exports = {
     findById,
     updateProductName,
     updateProductPrice,
-    updateProductCategory
+    updateProductCategory,
+    replaceProduct
 };
