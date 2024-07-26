@@ -17,4 +17,4 @@ router.put("/:id", (request, response) => productController.replaceProduct(reque
 
 app.use("/api-products", router);
 
-app.listen(4002, () => console.log("Listen port 4002"));
+app.listen(4002, () => console.log("Listen port 4002."));
