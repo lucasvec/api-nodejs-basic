@@ -16,8 +16,9 @@ Follow these steps to set up and run the API on your local machine:
 
 Acquire the project by cloning the repository:
 
-git clone https://github.com/lucasvec/api-nodejs-basic.git
-cd api-nodejs-basic
+**git clone https://github.com/lucasvec/api-nodejs-basic.git**
+
+**cd api-nodejs-basic**
 
 ### 2. Install Dependencies
 
@@ -28,7 +29,10 @@ Install the necessary dependencies by running:
 ### 3. Configure the Database
 Ensure your MySQL server is running. Then, configure the database credentials by editing the db.config.js file with your MySQL credentials.
 
-### 4. Create the Database Table
+### 4. Extension to manage database (VSCode) - *Optional
+Search for "MySQL".
+
+### 5. Create the Database Table
 Run the following SQL script to create the product table in your database:
 
 **CREATE TABLE product (
@@ -39,7 +43,7 @@ Run the following SQL script to create the product table in your database:
 );**
 
 
-### 5. Start the API
+### 6. Start the API
 Finally, start the API by running:
 
 **npm start**
