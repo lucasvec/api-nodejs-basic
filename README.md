@@ -30,7 +30,7 @@ Install the necessary dependencies by running:
 Ensure your MySQL server is running. Then, configure the database credentials by editing the db.config.js file with your MySQL credentials.
 
 ### 4. Extension to manage database (VSCode) - *Optional
-Search for "MySQL".
+Search for "MySQL" by Weijan Chen.
 
 ### 5. Create the Database Table
 Run the following SQL script to create the product table in your database:
