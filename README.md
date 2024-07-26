@@ -25,7 +25,7 @@ Install the necessary dependencies by running:
 
 **npm install**
 
-#### 3. Configure the Database
+### 3. Configure the Database
 Ensure your MySQL server is running. Then, configure the database credentials by editing the db.config.js file with your MySQL credentials.
 
 ### 4. Create the Database Table
