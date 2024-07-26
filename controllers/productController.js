@@ -56,7 +56,7 @@ class ProductController {
             return response.json({error: "Product already exists."});
         }else{
 
-            const product = new classProduct(name, price, category)  ;     
+            const product = new classProduct(name, price, category);     
 
             const result = this.serviceProduct.insertProduct(product);
 
